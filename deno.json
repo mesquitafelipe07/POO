@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run --watch --allow-net atividade02.ts"
+    "dev": "deno run --watch --allow-net atividade03.ts"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1"
