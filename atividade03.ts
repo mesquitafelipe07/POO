@@ -434,37 +434,37 @@ function criarItem(tipo: ItemEscolhido): ItemConsumivel {
 
 // demonstração dos requisitos básicos
 function demonstrarRequisitosBasicos(): void {
-  console.log('========== DEMONSTRAÇÃO DOS REQUISITOS BÁSICOS ==========')
+  console.log('DEMONSTRAÇÃO DOS REQUISITOS BÁSICOS:')
 
-  console.log('\n-- Criação das 3 armas diferentes --')
+  console.log('\nCriação das 3 armas diferentes:')
   const espada = new Espada()
   const arco = new Arco()
   const varinha = new VarinhaMagica()
   console.log(`Armas criadas: ${espada.nome}, ${arco.nome}, ${varinha.nome}`)
 
-  console.log('\n-- Cooldown bloqueando um ataque de fato --')
+  console.log('\nCooldown bloqueando um ataque de fato:')
   console.log(`1º ataque: ${espada.atacar()} de dano`)
   console.log(`2º ataque imediato (sem passar turno): ${espada.atacar()} de dano (deve ser 0, cooldown ativo)`)
 
-  console.log('\n-- Consumo e recarga manual de flechas --')
+  console.log('\nConsumo e recarga manual de flechas:')
   arco.atacar()
   arco.atacar()
   arco.atacar()
   console.log(`Flechas restantes: ${arco.flechasRestantes}`)
   arco.recarregar(3)
 
-  console.log('\n-- Consumo e recuperação manual de mana --')
+  console.log('\nConsumo e recuperação manual de mana:')
   varinha.atacar()
   console.log(`Mana restante: ${varinha.manaAtual}`)
   varinha.recuperarMana(20)
 
-  console.log('\n-- Inventário sendo usado --')
+  console.log('\nInventário sendo usado:')
   const exemplo = new Personagem('Exemplo', new Espada())
   exemplo.adicionarItem(new Item('Poção de Vida', 20))
   exemplo.adicionarItem(new Item('Amuleto Antigo', 100))
   exemplo.mostrarInventario()
 
-  console.log('\n========== FIM DA DEMONSTRAÇÃO ==========\n')
+  console.log('\nFIM DA DEMONSTRAÇÃO\n')
 }
 
 // interação com o usuário
@@ -515,7 +515,7 @@ function jogarDuelo(
   p2.equiparItem(criarItem(item2))
 
   console.log(`\nParticipantes no Jogo: ${jogo.participantes.map(p => p.nome).join(', ')}`)
-  console.log(`\n========== ${nome1} (${classe1}) VS ${nome2} (${classe2}) ==========`)
+  console.log(`\n${nome1} (${classe1}) VS ${nome2} (${classe2})`)
 
   let turno = 0
   while (turno < LIMITE_DE_TURNOS) {
@@ -523,11 +523,11 @@ function jogarDuelo(
     const atacante = (turno % 2 === 1) ? p1 : p2 
     const defensor = (turno % 2 === 1) ? p2 : p1
 
-    console.log(`\n----- Turno ${turno}: vez de ${atacante.nome} -----`)
+    console.log(`\nTurno ${turno}: vez de ${atacante.nome}!`)
     atacante.executarTurno(defensor)
 
     if (!defensor.estaVivo()) {
-      console.log(`\n========== FIM DE JOGO: ${atacante.nome} venceu em ${turno} turnos! ==========`)
+      console.log(`\nFIM DE JOGO: ${atacante.nome} venceu em ${turno} turnos!`)
       return
     }
 
@@ -535,18 +535,18 @@ function jogarDuelo(
 
     if (!p1.estaVivo() || !p2.estaVivo()) {
       const vencedor = p1.estaVivo() ? p1.nome : p2.nome
-      console.log(`\n========== FIM DE JOGO: ${vencedor} venceu em ${turno} turnos! ==========`)
+      console.log(`\nFIM DE JOGO: ${vencedor} venceu em ${turno} turnos!`)
       return
     }
   }
 
-  console.log(`\n========== EMPATE: limite de ${LIMITE_DE_TURNOS} turnos atingido ==========`)
+  console.log(`\nEMPATE: limite de ${LIMITE_DE_TURNOS} turnos atingido`)
 }
 
 // menu principal
 async function menuPrincipal(rl: readline.Interface): Promise<void> {
   while (true) {
-    console.log('\n========== MENU ==========')
+    console.log('\nMENU:')
     console.log('1 - Montar minha própria partida')
     console.log('0 - Sair')
 
@@ -575,7 +575,7 @@ async function menuPrincipal(rl: readline.Interface): Promise<void> {
 async function main(): Promise<void> {
   demonstrarRequisitosBasicos()
 
-  console.log('\n========== PARTIDA AUTOMÁTICA DE DEMONSTRAÇÃO ==========')
+  console.log('\nPARTIDA AUTOMÁTICA DE DEMONSTRAÇÃO')
   jogarDuelo('Bárbaro Exemplo', 'barbaro', 'veneno', 'Mago Exemplo', 'mago', 'regeneracao')
 
   const rl = readline.createInterface({ input, output })
